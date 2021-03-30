@@ -3,18 +3,17 @@ const express = require('express')
 
 const path = require('path')
 
-if(process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
-  require('dotenv').config({ path: './.env' });
+  require('dotenv').config({ path: './.env' })
 }
 
 const app = express()
-const {PORT} = process.env
-const {HOST} = process.env
+const { PORT } = process.env
+const { HOST } = process.env
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 
 app.use(express.static(__dirname + '../dist'))
 
@@ -25,4 +24,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, (err) => {
   if (err) { return console.error(err) } else { return `listening on port ${process.env.PORT}` }
 })
-
