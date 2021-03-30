@@ -1,0 +1,54 @@
+version: '1.0'
+steps:
+  clone:
+    title: Cloning repository..
+    type: git-clone
+    repo: sereigh/abbr
+    revision: '${{CF_BRANCH}}'
+    git: github
+    stage: clone
+  test:
+    title: Running tests..
+    type: freestyle
+    working_directory: '${{clone}}'
+    commands:
+      - 'export COVERALLS_SERVICE_NAME=${{COVERALLS_SERVICE_NAME}}'
+      - 'export COVERALLS_GIT_BRANCH=${{CF_BRANCH}}'
+      - 'export COVERALLS_REPO_TOKEN=${{COVERALLS_REPO_TOKEN}}'
+      - npm install --save-dev jest
+      - npm run test
+    stage: test
+    image: 'node:12.19.0'
+    environment:
+      - CI=true
+  report:
+    title: Sending results..
+    type: codefresh-audit-exporter
+    arguments:
+      CF_API_KEY: '${{CF_API_KEY}}'
+      GOOGLE_STORAGE: '${{GOOGLE_STORAGE}}'
+      GOOGLE_BUCKET_NAME: '${{GOOGLE_BUCKET_NAME}}'
+    build:
+      title: Building Docker image..
+      type: build
+      image_name: ${{IMG_NAME}}
+      working_directory: '${{clone}}'
+      tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+      dockerfile: Dockerfile
+      stage: build
+      registry: ${{REGISTRY}}
+  merge:
+    title: Commiting changes and pushing to master..
+    type: git-commit
+    arguments:
+      repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+      git: github
+      working_directory: '/codefresh/volume/${{CF_REPO_NAME}}'
+      commit_message: All tests passed.
+      allow_empty: false
+stages:
+  - clone
+  - test
+  - report
+  - build
+  - merge
