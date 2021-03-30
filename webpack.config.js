@@ -1,16 +1,16 @@
-const path = require('path');
+const path = require('path')
 
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public')
   },
   module: {
     rules: [
@@ -22,14 +22,14 @@ module.exports = {
           options: {
             presets: [
               '@babel/preset-env',
-              '@babel/preset-react',
-            ],
-          },
-        },
-      },
-    ],
+              '@babel/preset-react'
+            ]
+          }
+        }
+      }
+    ]
   },
   plugins: [new ESLintPlugin({
     extensions: ['js', 'jsx', 'png']
-  })],
-};
+  })]
+}

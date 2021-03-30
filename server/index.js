@@ -1,13 +1,11 @@
 
 const express = require('express')
-
 const path = require('path')
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
   require('dotenv').config({ path: './.env' })
 }
-
 
 const app = express()
 const { PORT } = process.env
@@ -23,5 +21,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, (err) => {
-  if (err) { return console.error(err) } else { return `listening on port ${process.env.PORT}` }
+  if (err) { console.error(err) } else { console.log(`listening at http://${HOST}:${PORT}`) }
 })

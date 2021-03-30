@@ -9,7 +9,6 @@ module.exports = {
     'airbnb',
     '@webpack-contrib/eslint-config-webpack',
     'plugin:jsx-a11y/recommended'
-
   ],
   settings: {
     ignore: 'node_modules',
