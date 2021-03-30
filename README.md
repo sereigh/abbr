@@ -1,6 +1,9 @@
 
 # Abbr #
 
+[![Coverage Status](https://coveralls.io/repos/github/sereigh/abbr/badge.svg?branch=main)](https://coveralls.io/github/sereigh/abbr?branch=main)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/sereigh/abber%2Funit-testing?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NjA2MGNiNDYzODRjZGI4M2RjNTJlYTVl.OOpb8LmgCUlXhyMmoNs_PhSW2ZnIsoLsiYN0hSPCJq4)]( https://g.codefresh.io/pipelines/edit/new/builds?id=606346353794571627a6fe4d&pipeline=unit-testing&projects=abber&projectId=60634618973297ea996fe247)
+
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
