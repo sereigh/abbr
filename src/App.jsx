@@ -14,8 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app-container" style={{border: "thin solid black"}}>
-        <h1>App Container</h1>
+      <div className="app-container" style={{border: "thick solid red"}}>
         <div className="app-header" style={{border: "thin solid black"}}>
           <h5>Header</h5>
         </div>
