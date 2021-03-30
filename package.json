@@ -3,6 +3,9 @@
   "description": "<!-- > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": {
+    "coveralls": "./bin/coveralls.js"
+  },
   "directories": {
     "test": "test"
   },
@@ -13,7 +16,7 @@
   "scripts": {
     "start": "npx parcel serve ./public/index.html",
     "build": "npx parcel build ./public/index.html",
-    "test": "jest --coverage && coveralls < coverage/lcov.info"
+    "test": "jest --coverage && coveralls < coverage/lcov.info | node ./bin/coveralls.js --verbose"
   },
   "repository": {
     "type": "git",
