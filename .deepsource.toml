@@ -1,12 +1,5 @@
 version = 1
 
-test_patterns = [
-    "test/**",
-    "__test__"
-]
-
-exclude_patterns = [".**"]
-
 [[analyzers]]
 name = "test-coverage"
 enabled = true
@@ -16,11 +9,14 @@ name = "docker"
 enabled = true
 
   [analyzers.meta]
-  dockerfile_paths = ["./Dockerfile"]
+  dockerfile_paths = ["."]
 
 [[analyzers]]
 name = "javascript"
 enabled = true
+
+  [analyzers.meta]
+  plugins = ["react"]
 
 [[transformers]]
 name = "standardjs"
