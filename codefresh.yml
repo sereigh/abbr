@@ -1,26 +1,44 @@
-version: '1.0'
+version: "1.0"
+
+stages:
+  - "clone"
+  - "build"
+  - "test"
+  - "report"
+  - "merge"
+
 steps:
   clone:
-    title: Cloning repository..
-    type: git-clone
-    repo: sereigh/abbr
-    revision: '${{CF_BRANCH}}'
-    git: github
-    stage: clone
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "sereigh/abbr"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "sereigh/abbr"
+    working_directory: "${{clone}}"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+    registry: "dockerhub"
+
   test:
-    title: Running tests..
-    type: freestyle
-    working_directory: '${{clone}}'
+    title: "Running test"
+    type: "freestyle"
+    image: "node:12.19.0"
+    working_directory: "${{clone}}"
     commands:
       - 'export COVERALLS_SERVICE_NAME=${{COVERALLS_SERVICE_NAME}}'
       - 'export COVERALLS_GIT_BRANCH=${{CF_BRANCH}}'
       - 'export COVERALLS_REPO_TOKEN=${{COVERALLS_REPO_TOKEN}}'
       - npm install --save-dev jest
       - npm run test
-    stage: test
-    image: 'node:12.19.0'
-    environment:
-      - CI=true
+    stage: "test"
+
   report:
     title: Sending results..
     type: codefresh-audit-exporter
@@ -28,15 +46,8 @@ steps:
       CF_API_KEY: '${{CF_API_KEY}}'
       GOOGLE_STORAGE: '${{GOOGLE_STORAGE}}'
       GOOGLE_BUCKET_NAME: '${{GOOGLE_BUCKET_NAME}}'
-    build:
-      title: Building Docker image..
-      type: build
-      image_name: ${{IMG_NAME}}
-      working_directory: '${{clone}}'
-      tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-      dockerfile: Dockerfile
-      stage: build
-      registry: ${{REGISTRY}}
+    stage: "report"
+
   merge:
     title: Commiting changes and pushing to master..
     type: git-commit
@@ -46,9 +57,4 @@ steps:
       working_directory: '/codefresh/volume/${{CF_REPO_NAME}}'
       commit_message: All tests passed.
       allow_empty: false
-stages:
-  - clone
-  - test
-  - report
-  - build
-  - merge
+    stage: "merge"

@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:node/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -16,11 +17,12 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   plugins: [
     'react',
+    'plugin:node/recommended',
   ],
   rules: {
   },
