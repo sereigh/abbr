@@ -1,6 +1,5 @@
 
 const express = require('express')
-const path = require('path')
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
@@ -14,7 +13,7 @@ const { HOST } = process.env
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static(__dirname + '../dist'))
+app.use(express.static(`${__dirname  }../dist`))
 
 app.get('/', (req, res) => {
   res.status(200).end()
