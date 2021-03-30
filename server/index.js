@@ -8,6 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: './.env' })
 }
 
+
 const app = express()
 const { PORT } = process.env
 const { HOST } = process.env
