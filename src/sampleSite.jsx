@@ -1,7 +1,7 @@
 
 const sampleSite = {
-  "some": "thing",
-  "someOther": "thing"
+  some: 'thing',
+  someOther: 'thing'
 }
 
 export default sampleSite
