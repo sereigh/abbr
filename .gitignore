@@ -14,6 +14,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+bin
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -36,6 +37,7 @@ bower_components/
 .floo
 .flooignore
 
+.env
 .vscode
 .git
 npm-debug.log
