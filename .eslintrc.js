@@ -8,7 +8,7 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     '@webpack-contrib/eslint-config-webpack',
-    'plugin:jsx-a11y/recommended',
+    'plugin:jsx-a11y/recommended'
 
   ],
   settings: {
@@ -23,7 +23,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 6,
+    ecmaVersion: 6
   },
   plugins: [
     'react',
@@ -31,9 +31,8 @@ module.exports = {
     'import'
   ],
   rules: {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-console": "off",
-    "class-methods-use-this": "off",
-  },
-};
-
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'no-console': 'off',
+    'class-methods-use-this': 'off'
+  }
+}
