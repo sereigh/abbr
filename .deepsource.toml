@@ -1,0 +1,27 @@
+version = 1
+
+test_patterns = [
+    "test/**",
+    "__test__"
+]
+
+exclude_patterns = [".**"]
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[analyzers]]
+name = "docker"
+enabled = true
+
+  [analyzers.meta]
+  dockerfile_paths = ["./Dockerfile"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+[[transformers]]
+name = "standardjs"
+enabled = true
