@@ -6,46 +6,46 @@ import articles, { site } from './source.jsx'
 import ViewPort from './ViewPort.jsx'
 
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       view: [],
       url: '',
-      ready: false,
+      ready: false
     }
     this.handleContent = this.handleContent.bind(this)
     this.handleUrlChange = this.handleUrlChange.bind(this)
     this.scrapeSite = this.scrapeSite.bind(this)
   }
 
-  handleContent(i) {
+  handleContent (i) {
     const { view } = this.state
     const newView = view.slice()
 
     if (newView.includes(i)) {
       newView.splice(newView.indexOf(i), 1)
-    }
-    else {
+    } else {
       newView.push(i)
       this.setState({
-      view: newView
-    })}
+        view: newView
+      })
+    }
   }
 
-  handleUrlChange(e) {
+  handleUrlChange (e) {
     const { url } = this.state
     this.setState({
       url: e.target.value
     })
   }
 
-  scrapeSite() {
+  scrapeSite () {
     axios.get('/')
       .then((response) => this.setSite(response))
       .catch((err) => console.error(err))
   }
 
-  render() {
+  render () {
     const { view, ready } = this.state
     return (
       <div className='app-container' style={{ border: 'thick solid red' }}>
@@ -55,8 +55,8 @@ class App extends React.Component {
         <div className='app-navbar' style={{ border: 'thin solid black' }}>
           <form onSubmit={this.scrapeSite}>
             <input
-              type="search"
-              className="app-url"
+              type='search'
+              className='app-url'
               onChange={this.handleUrlChange}
             />
           </form>

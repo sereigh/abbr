@@ -12,7 +12,7 @@ const { checkWhiteList } = require('./checkWhiteList.js')
 exports.parseSite = (source, cb) => {
   const filtered = filterSite(html)
 
-  const parsedSite = filtered.split("<").filter((tag) => checkWhiteList(tag)).map((tag) => checkWhiteList(tag)).join("")
+  const parsedSite = filtered.split('<').filter((tag) => checkWhiteList(tag)).map((tag) => checkWhiteList(tag)).join('')
 
   return cb(null, parsedSite)
 }

@@ -10,8 +10,8 @@ const ViewPort = ({ site, articles, toggleContent, view }) => (
     {articles.map((article, i) => (
       <div key={article.id}>
         <div
-          className="content-header"
-          role="button"
+          className='content-header'
+          role='button'
           tabIndex={0}
           onClick={toggleContent(i)}
           onKeyPress={toggleContent(i)}
@@ -26,7 +26,7 @@ const ViewPort = ({ site, articles, toggleContent, view }) => (
       </div>
     ))}
   </>
-);
+)
 
 ViewPort.propTypes = {
   articles: PropTypes.oneOfType([

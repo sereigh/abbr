@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Content = ({content}) => (
+const Content = ({ content }) => (
   <p>
     {content}
   </p>

@@ -16,13 +16,13 @@ const { HOST } = process.env
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(express.static(`${__dirname  }../dist`))
+app.use(express.static(`${__dirname}../dist`))
 
 app.get('/', (req, res) => {
-parseSite(req.params, (err, result) => {
-      if (err) { res.status(404).send(err) }
-      res.status(200).send(result)
-    })
+  parseSite(req.params, (err, result) => {
+    if (err) { res.status(404).send(err) }
+    res.status(200).send(result)
+  })
 })
 
 app.listen(PORT, (err) => {
