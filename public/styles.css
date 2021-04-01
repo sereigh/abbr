@@ -29,3 +29,12 @@ body {
   display: flex;
   flex-direction: row;
 }
+.content-header {
+
+}
+.content-show {
+
+}
+.content-hide {
+  display: none;
+}

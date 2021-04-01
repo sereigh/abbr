@@ -1,8 +1,8 @@
 const express = require('express')
 
-const axios = require('axios')
+// const axios = require('axios')
 
-const writeSite = require('./middleware/writeSite.js')
+const { parseSite } = require('./middleware/parseSite.js')
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
@@ -19,13 +19,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(`${__dirname}../dist`))
 
 app.get('/', (req, res) => {
-  axios.get('https://jamesclear.com/saying-no')
-    .then((response) => writeSite(response, (err, result) => {
-      if (err) { return console.error(err) }
-      return console.log(result)
-    }))
-    .catch((err) => console.error(err))
-    .then(() => res.status(200).end())
+  parseSite(req.params, (err, result) => {
+    if (err) { res.status(404).send(err) }
+    res.status(200).send(result)
+  })
 })
 
 app.listen(PORT, (err) => {
