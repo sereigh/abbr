@@ -41,4 +41,5 @@ bower_components/
 .env
 .vscode
 .git
+source.jsx
 npm-debug.log
